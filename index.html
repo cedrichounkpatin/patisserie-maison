@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Pâtisserie Maison : réussis tes gâteaux chez toi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF8FC;--surface:#FFFFFF;--ink:#2A1A2E;--muted:#6A5870;--line:#E7DDEA;
+  --berry:#B3154F;--berry-ink:#FFFFFF;--pista:#E3F0DC;--pista-ink:#2F5D3A;--butter:#F7D56B;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#1B1220;--surface:#271A2D;--ink:#F6EEF8;--muted:#BBA9C2;--line:#41304A;--berry:#F06292;--berry-ink:#2A0A17;--pista:#243326;--pista-ink:#BFE3B4;}
+}
+:root[data-theme="dark"]{--bg:#1B1220;--surface:#271A2D;--ink:#F6EEF8;--muted:#BBA9C2;--line:#41304A;--berry:#F06292;--berry-ink:#2A0A17;--pista:#243326;--pista-ink:#BFE3B4;}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--head);line-height:1.12;margin:0 0 .6em;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,7.5vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0 0 1em}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+.btn{display:inline-block;background:var(--berry);color:var(--berry-ink);font:600 1.1rem var(--body);text-decoration:none;padding:16px 28px;border-radius:999px;text-align:center;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,summary:focus-visible{outline:3px solid var(--butter);outline-offset:3px}
+.brand{font:800 1.1rem var(--head);padding:18px 0}
+/* hero */
+.hero{display:grid;gap:32px;align-items:center;padding:24px 0 56px}
+.hero .sub{font-size:1.2rem;color:var(--muted);max-width:34em}
+.price-note{margin-top:14px;font-size:.95rem;color:var(--muted)}
+.cake{width:100%;max-width:340px;margin:0 auto;display:block}
+@media(min-width:820px){.hero{grid-template-columns:1.3fr 1fr}}
+/* reconnais */
+.band{background:var(--pista);color:var(--pista-ink)}
+.band ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.band li{padding-left:34px;position:relative;font-size:1.1rem}
+.band li::before{content:"";position:absolute;left:0;top:.35em;width:20px;height:20px;border-radius:50%;background:var(--pista-ink);opacity:.9}
+@media(min-width:820px){.band ul{grid-template-columns:1fr 1fr;gap:18px 40px}}
+/* programme */
+.mods{display:grid;gap:0;border-top:1px solid var(--line)}
+.mod{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:22px 0;border-bottom:1px solid var(--line)}
+.mod b{font:800 2.4rem/1 var(--head);color:var(--berry)}
+.mod p{margin:0;color:var(--muted)}
+/* bonus */
+.bonus{background:var(--butter);color:#2A1A2E;border-radius:24px;padding:32px 24px}
+.bonus h2{margin-bottom:.4em}
+.bonus p{margin:0;max-width:40em}
+/* recu */
+.got{display:grid;gap:12px;list-style:none;padding:0;margin:0}
+.got li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+@media(min-width:700px){.got{grid-template-columns:repeat(2,1fr)}}
+/* offre */
+.offer{background:var(--surface);border:2px solid var(--berry);border-radius:28px;padding:36px 24px;text-align:center;max-width:520px;margin:0 auto}
+.offer .p{font:800 clamp(2.6rem,10vw,3.6rem)/1 var(--head);color:var(--berry);margin:8px 0}
+.offer ul{list-style:none;padding:0;margin:18px 0 26px;text-align:left;display:grid;gap:8px}
+.offer li::before{content:"✓ ";color:var(--berry);font-weight:600}
+.offer .btn{display:block}
+.guar{max-width:520px;margin:20px auto 0;text-align:center;color:var(--muted);font-size:.98rem}
+/* faq */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font:600 1.08rem var(--body);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--berry);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:12px 0 0;color:var(--muted)}
+/* final */
+.final{text-align:center}
+.final p{max-width:32em;margin-left:auto;margin-right:auto;color:var(--muted)}
+footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.9rem}
+/* sticky mobile */
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar span{font:800 1.1rem var(--head)}
+.bar .btn{padding:12px 20px;font-size:1rem}
+@media(min-width:820px){.bar{display:none}footer{padding-bottom:28px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">La Pâtisserie Maison</div>
+  <header class="hero">
+    <div>
+      <h1>Réussis tes gâteaux, pâtés, crêpes et beignets chez toi, même si tu débutes.</h1>
+      <p class="sub">Des recettes avec des ingrédients du marché, sans matériel professionnel, pour un résultat digne d’une pâtisserie.</p>
+      <a class="btn" data-pay href="#offre">Je rejoins La Pâtisserie Maison</a>
+      <p class="price-note">5 000 FCFA · paiement par mobile money · accès immédiat</p>
+    </div>
+    <svg class="cake" viewBox="0 0 320 300" role="img" aria-label="Illustration d’un gâteau d’anniversaire à trois étages">
+      <ellipse cx="160" cy="276" rx="130" ry="14" fill="var(--line)"/>
+      <rect x="40" y="200" width="240" height="70" rx="14" fill="var(--berry)"/>
+      <path d="M40 222c20 18 40-6 60 12s40-8 60 10 40-10 60 8 40-10 60 4v14H40z" fill="var(--butter)"/>
+      <rect x="76" y="140" width="168" height="62" rx="14" fill="var(--pista-ink)"/>
+      <path d="M76 160c18 16 34-6 50 10s32-8 48 8 34-8 50 6 14-4 20 2v16H76z" fill="var(--bg)"/>
+      <rect x="112" y="86" width="96" height="56" rx="14" fill="var(--berry)" opacity=".85"/>
+      <rect x="156" y="52" width="8" height="36" rx="3" fill="var(--ink)"/>
+      <path d="M160 24c10 12 10 20 0 26-10-6-10-14 0-26z" fill="var(--butter)"/>
+      <circle cx="140" cy="116" r="5" fill="var(--butter)"/><circle cx="160" cy="124" r="5" fill="var(--butter)"/><circle cx="180" cy="116" r="5" fill="var(--butter)"/>
+    </svg>
+  </header>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Tu te reconnais ?</h2>
+    <ul>
+      <li>Tu veux pâtisser, mais tu as peur de rater.</li>
+      <li>Tu penses qu’il faut un équipement de pro pour réussir.</li>
+      <li>Tu ne trouves pas les ingrédients des recettes vues en ligne.</li>
+      <li>Tu voudrais en tirer un revenu, sans savoir par où commencer.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>La Pâtisserie Maison te guide pas à pas.</h2>
+    <p style="max-width:40em;color:var(--muted)">Tout est filmé de près, en vidéo, avec des ingrédients accessibles et le matériel que tu as déjà dans ta cuisine.</p>
+    <div class="mods" style="margin-top:28px">
+      <div class="mod"><b>1</b><div><h3>Le gâteau d’anniversaire</h3><p>Moelleux, bien monté, avec une belle finition.</p></div></div>
+      <div class="mod"><b>2</b><div><h3>Les pâtés</h3><p>Une pâte régulière et une cuisson maîtrisée.</p></div></div>
+      <div class="mod"><b>3</b><div><h3>Les crêpes</h3><p>Fines, sans grumeaux, qui ne collent pas.</p></div></div>
+      <div class="mod"><b>4</b><div><h3>Les beignets</h3><p>Légers et dorés, sans excès de gras.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="bonus">
+      <h2>Bonus : le plan de 28 jours pour vendre tes préparations</h2>
+      <p>Un plan jour par jour pour passer de tes premières réussites à tes premières commandes. Inclus dans la formation.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Ce que tu reçois</h2>
+    <ul class="got">
+      <li>Les vidéos, à regarder sur ton téléphone quand tu veux</li>
+      <li>Les quantités exactes de chaque recette</li>
+      <li>Des astuces pour réussir sans matériel professionnel</li>
+      <li>Le bonus : le plan de 28 jours pour vendre</li>
+    </ul>
+  </div>
+</section>
+
+<section id="offre">
+  <div class="wrap">
+    <div class="offer">
+      <h2 style="margin-bottom:0">La Pâtisserie Maison</h2>
+      <div class="p">5 000 FCFA</div>
+      <p style="color:var(--muted);margin:0">Paiement unique par mobile money</p>
+      <ul>
+        <li>4 formations vidéo pas à pas</li>
+        <li>Quantités exactes de chaque recette</li>
+        <li>Bonus : plan de 28 jours pour vendre</li>
+        <li>Accès immédiat après paiement</li>
+      </ul>
+      <a class="btn" data-pay href="#offre">Je commence maintenant</a>
+    </div>
+    <p class="guar">Garantie : remboursée sous 7 jours si la formation ne te convient pas.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:760px">
+    <h2>Questions fréquentes</h2>
+    <details><summary>Je suis débutante, est-ce pour moi ?</summary><p>Oui. Chaque geste est montré de près, étape par étape.</p></details>
+    <details><summary>Faut-il du matériel professionnel ?</summary><p>Non. Les recettes se font avec le matériel courant d’une cuisine.</p></details>
+    <details><summary>Les ingrédients sont-ils faciles à trouver ?</summary><p>Oui, ce sont des ingrédients du marché.</p></details>
+    <details><summary>Comment je reçois la formation ?</summary><p>Par lien, juste après ton paiement par mobile money.</p></details>
+    <details><summary>Le plan de 28 jours, c’est quoi ?</summary><p>Un guide jour par jour pour trouver tes premières clientes et vendre tes préparations.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Ton premier gâteau réussi commence aujourd’hui.</h2>
+    <p>Rejoins La Pâtisserie Maison pour 5 000 FCFA et pâtisse chez toi, sans matériel de pro.</p>
+    <a class="btn" data-pay href="#offre">Je rejoins La Pâtisserie Maison</a>
+  </div>
+</section>
+
+<footer><div class="wrap">© La Pâtisserie Maison</div></footer>
+
+<div class="bar"><span>5 000 FCFA</span><a class="btn" data-pay href="#offre">Je commence</a></div>
+
+<script>
+var PAY_URL="#offre"; // remplace par ton lien de paiement mobile money
+document.querySelectorAll("[data-pay]").forEach(function(a){
+  if(a.closest("#offre")||a.closest(".bar")||a.closest(".final")||a.closest(".hero")){a.href=PAY_URL;}
+});
+</script>
+</body>
+</html>
