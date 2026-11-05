@@ -33,12 +33,34 @@ section{padding:56px 0}
 .btn:hover{transform:translateY(-2px)}
 .btn:focus-visible,summary:focus-visible{outline:3px solid var(--butter);outline-offset:3px}
 .brand{font:800 1.1rem var(--head);padding:18px 0}
+
+/* bannière atelier après le titre */
+.brand-banner{width:100%;border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(42,26,46,0.14);border:2px solid var(--line);margin:8px 0 28px;background:var(--surface);max-height:440px}
+.brand-banner-img{width:100%;height:100%;max-height:440px;object-fit:cover;display:block}
+
 /* hero */
-.hero{display:grid;gap:32px;align-items:center;padding:24px 0 56px}
+.hero{display:grid;gap:32px;align-items:center;padding:16px 0 56px}
 .hero .sub{font-size:1.2rem;color:var(--muted);max-width:34em}
 .price-note{margin-top:14px;font-size:.95rem;color:var(--muted)}
-.cake{width:100%;max-width:340px;margin:0 auto;display:block}
-@media(min-width:820px){.hero{grid-template-columns:1.3fr 1fr}}
+@media(min-width:820px){.hero{grid-template-columns:1.2fr 1fr}}
+
+/* carrousel hero */
+.slider-box{position:relative;width:100%;max-width:460px;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(42,26,46,0.18);border:2px solid var(--line);aspect-ratio:4/3.3;background:var(--surface)}
+.slider-track{position:relative;width:100%;height:100%}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease-in-out, transform .7s ease-in-out;transform:scale(1.03)}
+.slide.active{opacity:1;visibility:visible;transform:scale(1)}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide-caption{position:absolute;bottom:14px;left:14px;background:rgba(27,18,32,0.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#FFFFFF;padding:7px 15px;border-radius:999px;font:600 .9rem var(--head);letter-spacing:.01em;box-shadow:0 2px 10px rgba(0,0,0,0.3);pointer-events:none}
+.slider-dots{position:absolute;bottom:16px;right:14px;display:flex;gap:6px;z-index:5;background:rgba(27,18,32,0.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:5px 9px;border-radius:999px}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.45);border:none;cursor:pointer;padding:0;transition:all .3s ease}
+.slider-dot.active{background:var(--butter);width:22px;border-radius:999px}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(27,18,32,0.65);backdrop-filter:blur(4px);color:#FFFFFF;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;line-height:1;transition:all .2s;opacity:0;z-index:6}
+.slider-arrow:hover{background:var(--berry)}
+.slider-box:hover .slider-arrow{opacity:1}
+.slider-prev{left:12px}
+.slider-next{right:12px}
+@media(max-width:819px){.slider-arrow{opacity:.85}}
+
 /* reconnais */
 .band{background:var(--pista);color:var(--pista-ink)}
 .band ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
@@ -55,9 +77,15 @@ section{padding:56px 0}
 .bonus h2{margin-bottom:.4em}
 .bonus p{margin:0;max-width:40em}
 /* recu */
-.got{display:grid;gap:12px;list-style:none;padding:0;margin:0}
-.got li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-@media(min-width:700px){.got{grid-template-columns:repeat(2,1fr)}}
+.got{display:grid;gap:14px;list-style:none;padding:0;margin:0}
+.got li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,0.03);transition:transform .15s ease}
+.got li:hover{transform:translateY(-2px)}
+.got-icon{width:44px;height:44px;border-radius:12px;background:var(--pista);color:var(--pista-ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.got-text{font-size:1.05rem;font-weight:600;line-height:1.4}
+@media(min-width:700px){
+  .got{grid-template-columns:repeat(2,1fr)}
+  .got li:last-child:nth-child(odd){grid-column:span 2}
+}
 /* offre */
 .offer{background:var(--surface);border:2px solid var(--berry);border-radius:28px;padding:36px 24px;text-align:center;max-width:520px;margin:0 auto}
 .offer .p{font:800 clamp(2.6rem,10vw,3.6rem)/1 var(--head);color:var(--berry);margin:8px 0}
@@ -87,24 +115,49 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.9rem
 <body>
 <div class="wrap">
   <div class="brand">La Pâtisserie Maison</div>
+  
+  <!-- Image insérée immédiatement après le titre La Pâtisserie Maison -->
+  <div class="brand-banner">
+    <img src="images/atelier.jpg" alt="Atelier de préparation et pétrissage La Pâtisserie Maison" class="brand-banner-img" loading="eager">
+  </div>
+
   <header class="hero">
     <div>
       <h1>Réussis tes gâteaux, pâtés, crêpes et beignets chez toi, même si tu débutes.</h1>
       <p class="sub">Des recettes avec des ingrédients du marché, sans matériel professionnel, pour un résultat digne d’une pâtisserie.</p>
-      <a class="btn" data-pay href="#offre">Je rejoins La Pâtisserie Maison</a>
+      <a class="btn" href="#offre">Je rejoins la formation maintenant</a>
       <p class="price-note">5 000 FCFA · paiement par mobile money · accès immédiat</p>
     </div>
-    <svg class="cake" viewBox="0 0 320 300" role="img" aria-label="Illustration d’un gâteau d’anniversaire à trois étages">
-      <ellipse cx="160" cy="276" rx="130" ry="14" fill="var(--line)"/>
-      <rect x="40" y="200" width="240" height="70" rx="14" fill="var(--berry)"/>
-      <path d="M40 222c20 18 40-6 60 12s40-8 60 10 40-10 60 8 40-10 60 4v14H40z" fill="var(--butter)"/>
-      <rect x="76" y="140" width="168" height="62" rx="14" fill="var(--pista-ink)"/>
-      <path d="M76 160c18 16 34-6 50 10s32-8 48 8 34-8 50 6 14-4 20 2v16H76z" fill="var(--bg)"/>
-      <rect x="112" y="86" width="96" height="56" rx="14" fill="var(--berry)" opacity=".85"/>
-      <rect x="156" y="52" width="8" height="36" rx="3" fill="var(--ink)"/>
-      <path d="M160 24c10 12 10 20 0 26-10-6-10-14 0-26z" fill="var(--butter)"/>
-      <circle cx="140" cy="116" r="5" fill="var(--butter)"/><circle cx="160" cy="124" r="5" fill="var(--butter)"/><circle cx="180" cy="116" r="5" fill="var(--butter)"/>
-    </svg>
+    
+    <!-- Défilement d'images des 4 spécialités -->
+    <div class="slider-box" aria-roledescription="carousel" aria-label="Galerie des recettes de la formation">
+      <div class="slider-track">
+        <div class="slide active">
+          <img src="images/gateau.jpg" alt="Le gâteau d'anniversaire fait maison" loading="eager">
+          <div class="slide-caption">🎂 Le gâteau d'anniversaire</div>
+        </div>
+        <div class="slide">
+          <img src="images/pates.jpg" alt="Les pâtés croustillants et dorés farcis" loading="lazy">
+          <div class="slide-caption">🥟 Les pâtés croustillants</div>
+        </div>
+        <div class="slide">
+          <img src="images/beignets.jpg" alt="Les beignets dorés et moelleux" loading="lazy">
+          <div class="slide-caption">🍩 Les beignets dorés</div>
+        </div>
+        <div class="slide">
+          <img src="images/crepes.jpg" alt="Les crêpes fines et légères" loading="lazy">
+          <div class="slide-caption">🥞 Les crêpes moelleuses</div>
+        </div>
+      </div>
+      <button class="slider-arrow slider-prev" aria-label="Image précédente" type="button">&#8249;</button>
+      <button class="slider-arrow slider-next" aria-label="Image suivante" type="button">&#8250;</button>
+      <div class="slider-dots">
+        <button class="slider-dot active" aria-label="Gâteau d'anniversaire" type="button"></button>
+        <button class="slider-dot" aria-label="Pâtés" type="button"></button>
+        <button class="slider-dot" aria-label="Beignets" type="button"></button>
+        <button class="slider-dot" aria-label="Crêpes" type="button"></button>
+      </div>
+    </div>
   </header>
 </div>
 
@@ -146,10 +199,58 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.9rem
   <div class="wrap">
     <h2>Ce que tu reçois</h2>
     <ul class="got">
-      <li>Les vidéos, à regarder sur ton téléphone quand tu veux</li>
-      <li>Les quantités exactes de chaque recette</li>
-      <li>Des astuces pour réussir sans matériel professionnel</li>
-      <li>Le bonus : le plan de 28 jours pour vendre</li>
+      <li>
+        <span class="got-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="3"></rect>
+            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+          </svg>
+        </span>
+        <span class="got-text">Les cours vidéos complets que tu peux suivre directement sur ton téléphone</span>
+      </li>
+      <li>
+        <span class="got-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="9" y1="13" x2="15" y2="13"></line>
+            <line x1="9" y1="17" x2="13" y2="17"></line>
+          </svg>
+        </span>
+        <span class="got-text">Les quantités exactes de chaque recette</span>
+      </li>
+      <li>
+        <span class="got-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18h6"></path>
+            <path d="M10 22h4"></path>
+            <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.3 4.7 3.2 6h7.6c1.9-1.3 3.2-3.5 3.2-6a7 7 0 0 0-7-7z"></path>
+          </svg>
+        </span>
+        <span class="got-text">Des astuces pour réussir sans matériel professionnel</span>
+      </li>
+      <li>
+        <span class="got-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+            <rect x="2" y="7" width="20" height="5"></rect>
+            <line x1="12" y1="22" x2="12" y2="7"></line>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+          </svg>
+        </span>
+        <span class="got-text">Le bonus : le plan de 28 jours pour vendre</span>
+      </li>
+      <li>
+        <span class="got-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </span>
+        <span class="got-text">Tu peux télécharger ton cours et le regarder plus tard</span>
+      </li>
     </ul>
   </div>
 </section>
@@ -165,10 +266,11 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.9rem
         <li>Quantités exactes de chaque recette</li>
         <li>Bonus : plan de 28 jours pour vendre</li>
         <li>Accès immédiat après paiement</li>
+        <li>Cours téléchargeable</li>
       </ul>
-      <a class="btn" data-pay href="#offre">Je commence maintenant</a>
+      <a class="btn" data-pay href="https://webcompetence.mychariow.shop/prd_96t4ng0l/checkout" target="_blank" rel="noopener noreferrer">Je commence maintenant</a>
     </div>
-    <p class="guar">Garantie : remboursée sous 7 jours si la formation ne te convient pas.</p>
+    <p class="guar">Garantie : remboursée sous 7 jours si tu ne retrouves pas exactement le contenu de la formation.</p>
   </div>
 </section>
 
@@ -187,19 +289,93 @@ footer{padding:28px 0 100px;text-align:center;color:var(--muted);font-size:.9rem
   <div class="wrap">
     <h2>Ton premier gâteau réussi commence aujourd’hui.</h2>
     <p>Rejoins La Pâtisserie Maison pour 5 000 FCFA et pâtisse chez toi, sans matériel de pro.</p>
-    <a class="btn" data-pay href="#offre">Je rejoins La Pâtisserie Maison</a>
+    <a class="btn" data-pay href="https://webcompetence.mychariow.shop/prd_96t4ng0l/checkout" target="_blank" rel="noopener noreferrer">Je rejoins la formation maintenant</a>
   </div>
 </section>
 
 <footer><div class="wrap">© La Pâtisserie Maison</div></footer>
 
-<div class="bar"><span>5 000 FCFA</span><a class="btn" data-pay href="#offre">Je commence</a></div>
+<div class="bar"><span>5 000 FCFA</span><a class="btn" data-pay href="https://webcompetence.mychariow.shop/prd_96t4ng0l/checkout" target="_blank" rel="noopener noreferrer">Je commence maintenant</a></div>
 
 <script>
-var PAY_URL="#offre"; // remplace par ton lien de paiement mobile money
+var PAY_URL="https://webcompetence.mychariow.shop/prd_96t4ng0l/checkout";
 document.querySelectorAll("[data-pay]").forEach(function(a){
-  if(a.closest("#offre")||a.closest(".bar")||a.closest(".final")||a.closest(".hero")){a.href=PAY_URL;}
+  a.href = PAY_URL;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
 });
+
+// Carrousel automatique en continu
+(function(){
+  var slides = document.querySelectorAll('.slider-box .slide');
+  var dots = document.querySelectorAll('.slider-box .slider-dot');
+  var prevBtn = document.querySelector('.slider-box .slider-prev');
+  var nextBtn = document.querySelector('.slider-box .slider-next');
+  if(!slides.length) return;
+  var current = 0;
+  var timer = null;
+
+  function showSlide(index){
+    slides[current].classList.remove('active');
+    if(dots[current]) dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    if(dots[current]) dots[current].classList.add('active');
+  }
+
+  function startAuto(){
+    stopAuto();
+    timer = setInterval(function(){
+      showSlide(current + 1);
+    }, 3200);
+  }
+
+  function stopAuto(){
+    if(timer) clearInterval(timer);
+  }
+
+  if(prevBtn){
+    prevBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      showSlide(current - 1);
+      startAuto();
+    });
+  }
+  if(nextBtn){
+    nextBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      showSlide(current + 1);
+      startAuto();
+    });
+  }
+
+  dots.forEach(function(dot, idx){
+    dot.addEventListener('click', function(e){
+      e.preventDefault();
+      showSlide(idx);
+      startAuto();
+    });
+  });
+
+  var box = document.querySelector('.slider-box');
+  if(box){
+    box.addEventListener('mouseenter', stopAuto);
+    box.addEventListener('mouseleave', startAuto);
+    var startX = 0;
+    box.addEventListener('touchstart', function(e){
+      startX = e.touches[0].clientX;
+      stopAuto();
+    }, {passive:true});
+    box.addEventListener('touchend', function(e){
+      var diffX = e.changedTouches[0].clientX - startX;
+      if(diffX > 40) showSlide(current - 1);
+      else if(diffX < -40) showSlide(current + 1);
+      startAuto();
+    }, {passive:true});
+  }
+
+  startAuto();
+})();
 </script>
 </body>
 </html>
